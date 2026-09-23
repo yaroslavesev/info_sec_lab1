@@ -137,3 +137,17 @@ Dependency-Check проверяет зависимости по данным NVD
 
 Отчёты сохраняются в `target/site/spotbugs.html` и `target/dependency-check-report.html` и загружаются в artifact
 `security-reports`.
+
+## Отчёты SAST и SCA
+
+### SpotBugs SAST
+
+Проверка исходного кода завершилась успешно. SpotBugs не обнаружил ошибок и предупреждений.
+
+![Отчёт SpotBugs SAST](docs/images/sast_screen.png)
+
+### OWASP Dependency-Check SCA
+
+Проверка зависимостей завершилась успешно. OWASP Dependency-Check сформировал HTML и JSON отчёты.
+
+![Отчёт OWASP Dependency-Check SCA](docs/images/sca_screen.png)
