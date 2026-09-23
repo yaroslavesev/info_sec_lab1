@@ -1,0 +1,122 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_source": "insomnia.desktop.app:v2023.4.0",
+  "resources": [
+    {
+      "_id": "__WORKSPACE_ID__",
+      "parentId": null,
+      "name": "Lab 1 Secure REST API",
+      "description": "Requests for the local secure REST API",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "__BASE_ENVIRONMENT_ID__",
+      "parentId": "__WORKSPACE_ID__",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:8080",
+        "token": ""
+      },
+      "_type": "environment"
+    },
+    {
+      "_id": "__request_1__",
+      "parentId": "__WORKSPACE_ID__",
+      "name": "POST /auth/login",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auth/login",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\"username\":\"admin\",\"password\":\"local-demo-password\"}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "parameters": [],
+      "authentication": {},
+      "_type": "request"
+    },
+    {
+      "_id": "__request_2__",
+      "parentId": "__WORKSPACE_ID__",
+      "name": "GET /api/data",
+      "method": "GET",
+      "url": "{{ _.base_url }}/api/data",
+      "body": {},
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.token }}"
+        }
+      ],
+      "parameters": [],
+      "authentication": {},
+      "_type": "request"
+    },
+    {
+      "_id": "__request_3__",
+      "parentId": "__WORKSPACE_ID__",
+      "name": "POST /api/posts",
+      "method": "POST",
+      "url": "{{ _.base_url }}/api/posts",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\"title\":\"New post\",\"body\":\"Secure API example\"}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.token }}"
+        }
+      ],
+      "parameters": [],
+      "authentication": {},
+      "_type": "request"
+    },
+    {
+      "_id": "__request_4__",
+      "parentId": "__WORKSPACE_ID__",
+      "name": "POST /api/posts XSS check",
+      "method": "POST",
+      "url": "{{ _.base_url }}/api/posts",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\"title\":\"<script>alert(1)</script>\",\"body\":\"Hello <b>world</b>\"}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.token }}"
+        }
+      ],
+      "parameters": [],
+      "authentication": {},
+      "_type": "request"
+    },
+    {
+      "_id": "__request_5__",
+      "parentId": "__WORKSPACE_ID__",
+      "name": "GET /api/data without token",
+      "method": "GET",
+      "url": "{{ _.base_url }}/api/data",
+      "body": {},
+      "headers": [],
+      "parameters": [],
+      "authentication": {},
+      "_type": "request"
+    }
+  ]
+}
